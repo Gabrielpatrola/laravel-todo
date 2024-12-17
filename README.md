@@ -1,7 +1,7 @@
 ## To-Do Laravel
 <h1 align="center">
     <br/>
- <a href="https://www.php.net/downloads" target="_blank" rel="noopener">PHP</a> | <a href="https://www.slimframework.com/docs/v4/" target="_blank" rel="noopener">Laravel</a> | <a href="https://vuejs.org/guide/introduction.html" target="_blank" rel="noopener">Vue</a> 
+ <a href="https://www.php.net/downloads" target="_blank" rel="noopener">PHP</a> | <a href="https://laravel.com/docs/11.x" target="_blank" rel="noopener">Laravel</a> | <a href="https://vuejs.org/guide/introduction.html" target="_blank" rel="noopener">Vue</a> 
 </h1>
 
 <h3 align="center">
