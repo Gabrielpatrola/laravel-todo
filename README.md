@@ -49,7 +49,6 @@ To be able to run this project, first you will need to have in your machine:
 2. **Install Dependencies:**
    ```bash
    composer install
-   npm install # or yarn install 
    ```
 
 3. **Configure Environment:**
@@ -63,14 +62,19 @@ To be able to run this project, first you will need to have in your machine:
    ```bash
    sail up -d # or ./vendor/bin/sail up -d
    ```
+5. **Generate an app key:**
+   ```bash
+   sail artisan key:generate # or ./vendor/bin/sail artisan key:generate
+   ```
    
-5. **Run migrations:**
+6. **Run migrations:**
    ```bash
    sail artisan migrate # or ./vendor/bin/sail artisan migrate
    ```
    
 7. **Run the Vue.js Development Server:**
    ```bash
+    sail npm install
     sail npm run dev # or ./vendor/bin/sail npm run dev
    ```
 
