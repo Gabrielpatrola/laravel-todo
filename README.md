@@ -1,65 +1,90 @@
-# To-Do List Application
+## To-Do Laravel
+<h1 align="center">
+    <br/>
+ <a href="https://www.php.net/downloads" target="_blank" rel="noopener">PHP</a> | <a href="https://www.slimframework.com/docs/v4/" target="_blank" rel="noopener">Laravel</a> | <a href="https://vuejs.org/guide/introduction.html" target="_blank" rel="noopener">Vue</a> 
+</h1>
 
+<h3 align="center">
+  <a href="#-about">About</a>
+  <span> · </span>
+  <a href="#-stack-used">Stack used</a>
+  <span> · </span>
+  <a href="#-how-to-use">How to Use</a>
+  <span> · </span>
+</h3>
+
+## 💭 About
+
+### Objective
 A modern Laravel application to manage tasks (to-do list) with a dynamic Vue.js frontend.
 
-## Features
+## 👨‍💻 Stack Used
+- <a href="https://www.php.net/downloads" target="_blank" rel="noopener">PHP ^8.x</a>
+- <a href="https://laravel.com/docs/11.x" target="_blank" rel="noopener">Laravel 11.x</a>
+- <a href="https://vuejs.org/guide/introduction.html" target="_blank" rel="noopener">Vue 3</a>
+- <a href="https://docs.docker.com/" target="_blank" rel="noopener">Docker</a>
 
-- Create, Read, Update, and Delete tasks
-- Task status management using PHP 8.1 Enums
-- Backend validations
-- Dynamic frontend using Vue.js
-- RESTful API integration
-- Responsive design with Bootstrap
+## ⁉ How to use
 
-## Requirements
+### 🤔 Requirements
 
-- PHP >= 8.1
-- Composer
-- Node.js and npm
-- Database (MySQL, PostgreSQL, etc.)
-- Git
+To be able to run this project, first you will need to have in your machine:
+
+- **<a href="https://getcomposer.org" target="_blank" rel="noopener">Composer</a>** to be able to manage the project's dependencies and autoload
+- **<a href="https://www.php.net/downloads" target="_blank" rel="noopener">PHP</a>** on version ^8.x
+- **<a href="https://git-scm.com/downloads" target="_blank" rel="noopener">Git</a>** to be able to clone this repository
+- **<a href="https://docs.docker.com/" target="_blank" rel="noopener">Docker</a>** to be able to run the application
+- **<a href="https://www.npmjs.com/" target="_blank" rel="noopener">NPM</a>** or **<a href="https://yarnpkg.com/" target="_blank" rel="noopener">Yarn</a>** for the frontend package management.
+
+### 📝 Steps
 
 ## Installation
 
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/yourusername/todo-app.git
-   cd todo-app
+   git clone git@github.com:Gabrielpatrola/laravel-todo.git
+   cd laravel-todo
    ```
 
 2. **Install Dependencies:**
    ```bash
    composer install
-   npm install
+   npm install # or yarn install 
    ```
 
-3. **Configure Database:**
-   - Create a new database in your MySQL server.
-   - Update the `.env` file with your database credentials.
-
-4. **Run Migrations:**
+3. **Configure Environment:**
+   - Copy the `.env.example` file to `.env`
    ```bash
-   php artisan migrate
+   cp .env.example .env 
    ```
+   - Update the `.env` file if necessary.
 
-5. **Start the Development Server:**
+4. **Start Laravel sail:**
    ```bash
-   php artisan serve
+   sail up -d # or ./vendor/bin/sail up -d
    ```
-
-6. **Access the Application:**
-   - Open your browser and navigate to `http://localhost:8000`.
-
+   
+5. **Run migrations:**
+   ```bash
+   sail artisan migrate # or ./vendor/bin/sail artisan migrate
+   ```
+   
 7. **Run the Vue.js Development Server:**
    ```bash
-   npm run dev
+    sail npm run dev # or ./vendor/bin/sail npm run dev
    ```
 
 8. **Access the Vue.js Application:**
-   - Open your browser and navigate to `http://localhost:3000`.
+   - Open your browser and navigate to `http://localhost`.
 
 9. **Run tests:**
    ```bash
-   php artisan test
+   sail artisan test # or ./vendor/bin/sail artisan test
+   # for coverage:
+   php artisan test --coverage # or ./vendor/bin/sail artisan test --coverage
    ```
+
+---
+
+<sup>Made with 💙 by <a href="https://github.com/gabrielpatrola" target="_blank" rel="noopener">Gabriel Patrola</a>.</sup>
