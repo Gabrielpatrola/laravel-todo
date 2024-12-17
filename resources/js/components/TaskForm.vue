@@ -10,21 +10,21 @@
             <form @submit.prevent="handleSubmit" novalidate>
                 <div class="mb-3">
                     <label for="title" class="form-label fw-semibold">Title</label>
-                    <input 
-                        type="text" 
-                        id="title" 
-                        v-model="task.title" 
-                        :class="['form-control', errors.title ? 'is-invalid' : '']" 
-                        required 
+                    <input
+                        type="text"
+                        id="title"
+                        v-model="task.title"
+                        :class="['form-control', errors.title ? 'is-invalid' : '']"
+                        required
                         maxlength="255"
                     >
                     <div v-if="errors.title" class="invalid-feedback">{{ errors.title }}</div>
                 </div>
                 <div class="mb-3">
                     <label for="status" class="form-label fw-semibold">Status</label>
-                    <select 
-                        id="status" 
-                        v-model="task.status" 
+                    <select
+                        id="status"
+                        v-model="task.status"
                         :class="['form-select', errors.status ? 'is-invalid' : '']"
                         required
                     >
@@ -49,64 +49,70 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
+import { ref, onMounted } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 
 export default {
-    props: ['id'],
-    data() {
-        return {
-            task: {
-                title: '',
-                status: '',
-            },
-            errors: {},
-        };
-    },
-    computed: {
-        isEdit() {
-            return !!this.id;
-        }
-    },
-    methods: {
-        fetchTask() {
-            axios.get(`/api/tasks/${this.id}`)
+    setup() {
+        const task = ref({
+            title: '',
+            status: '',
+        })
+        const errors = ref({})
+        const route = useRoute()
+        const router = useRouter()
+
+        const isEdit = !!route.params.id
+        const taskId = route.params.id
+
+        const fetchTask = () => {
+            axios.get(`/api/tasks/${taskId}`)
                 .then(response => {
-                    this.task = response.data;
+                    task.value = response.data
                 })
                 .catch(error => {
-                    console.error(error);
-                    alert('Failed to fetch task details.');
-                    this.$router.push('/tasks');
-                });
-        },
-        handleSubmit() {
-            const apiCall = this.isEdit
-                ? axios.put(`/api/tasks/${this.id}`, this.task)
-                : axios.post('/api/tasks', this.task);
+                    console.error(error)
+                    router.push({ name: 'Tasks' })
+                })
+        }
+
+        const handleSubmit = () => {
+            const apiCall = isEdit
+                ? axios.put(`/api/tasks/${taskId}`, task.value)
+                : axios.post('/api/tasks', task.value)
 
             apiCall
                 .then(() => {
-                    const message = this.isEdit
+                    const successMessage = isEdit
                         ? 'Task updated successfully.'
-                        : 'Task created successfully.';
-                    this.$router.push({ name: 'Tasks', query: { success: message } });
+                        : 'Task created successfully.'
+                    router.push({ name: 'Tasks', query: { success: successMessage } })
                 })
                 .catch(error => {
                     if (error.response && error.response.data.errors) {
-                        this.errors = error.response.data.errors;
+                        errors.value = error.response.data.errors
                     } else {
-                        console.error(error);
-                        alert(`Failed to ${this.isEdit ? 'update' : 'create'} task.`);
+                        console.error(error)
                     }
-                });
+                })
         }
-    },
-    mounted() {
-        if (this.isEdit) {
-            this.fetchTask();
+
+        onMounted(() => {
+            if (isEdit) {
+                fetchTask()
+            }
+        })
+
+        return {
+            task,
+            errors,
+            isEdit,
+            handleSubmit
         }
     }
-};
+}
+
 </script>
 
 <style scoped>
