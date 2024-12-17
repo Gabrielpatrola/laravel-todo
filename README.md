@@ -10,7 +10,6 @@
   <a href="#-stack-used">Stack used</a>
   <span> · </span>
   <a href="#-how-to-use">How to Use</a>
-  <span> · </span>
 </h3>
 
 ## 💭 About
